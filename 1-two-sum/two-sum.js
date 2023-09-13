@@ -3,13 +3,14 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
+var twoSum = function (nums, target) {
+    let numsDict = {};
     for (let i = 0; i < nums.length; i++) {
-        for (let c = i+1; c < nums.length; c++) {
-            if (nums[i] + nums[c] == target) {
-                return [i, c]
-            }
+        const n = nums[i];
+        if (target - n in numsDict) {
+            return [i, numsDict[target - n]]
+        } else {
+            numsDict[n] = i;
         }
     }
-
 };
