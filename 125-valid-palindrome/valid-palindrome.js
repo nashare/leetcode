@@ -2,18 +2,24 @@
  * @param {string} s
  * @return {boolean}
  */
-var isPalindrome = function(s) {
-    let alphabet = "qwertyuiopasdfghjklzxcvbnm1234567890"
-    s = s.toLowerCase();
-    let s_clear = "";
+var isPalindrome = function (s) {
+    let end = s.length - 1;
+    const alphNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+    let sCleared = "";
     for (let i = 0; i < s.length; i++) {
-        if (alphabet.includes(s[i])) {
-            s_clear += s[i];
+        if (alphNum.includes(s[i])) {
+            sCleared += s[i].toLowerCase();
         }
     }
-    let s_clear_reversed = "";
-    for (let i = s_clear.length - 1; i >= 0; i-- ) {
-        s_clear_reversed += s_clear[i];
+    let start = 0;
+    let finish = sCleared.length - 1;
+    while (start <= finish) {
+        if (sCleared[start] != sCleared[finish]) {
+            return false;
+        } else {
+            start++;
+            finish--;
+        }
     }
-    return s_clear === s_clear_reversed;
+    return true;
 };
