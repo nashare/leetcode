@@ -4,13 +4,15 @@
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    let numsDict = {};
-    for (let i = 0; i < numbers.length; i++) {
-        const n = numbers[i];
-        if (target - n in numsDict) {
-            return [numsDict[target - n] + 1, i + 1]
+    let left = 0;
+    let right = numbers.length - 1;
+    while (left <= right) {
+        if (numbers[left] + numbers[right] > target) {
+            right--;
+        } else if (numbers[left] + numbers[right] < target) {
+            left++;
         } else {
-            numsDict[n] = i;
+            return [left+1, right+1]
         }
     }
 };
